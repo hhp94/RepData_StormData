@@ -72,14 +72,14 @@ The clean_names function did the following:
 ### Data Analysis Strategy:   
 Step 1: Find the total number of fatalities and casualties for all the years, stratified by event types  
 Step 2: Divide the total numbers by the total number of years, which is 62, to get the average annual number.  
-Step 3: Plot the top 10 highest average annual number and see which event type(s) have or has the highest impact on public health  
+Step 3: Plot the top 10 highest average annual number and see which event type(s) have or has the highest impact on public health    
 Step 4: Conclude the result    
   
 ### Data Processing Strategy:  
 Step 1: Create new data frame only with the column: "bgn_date", "evtype", "injuries", and "fatalities" where only the number of cases is > 0.   
-Step 2: Convert all the strings in the "evtype" column to lower case  
-Step 3: Summarize the total sum of cases grouped by the variable "evtype"  
-Step 4: Sum the results of all the rows that is related to "heat", "tornado", and "tstm" or "thunderstorm", such as "extreme heat" or "tornado f3". 
+Step 2: Convert all the strings in the "evtype" column to lower case        
+Step 3: Summarize the total sum of cases grouped by the variable "evtype"           
+Step 4: Sum the results of all the rows that is related to "heat", "tornado", and "tstm" or "thunderstorm", such as "extreme heat" or "tornado f3".        
 Step 5: Replace all the related rows with the summarized row in two new datasets  
 Step 6: Divide the total number of cases by 62 (years) into a new column for average annual cases values  
 Step 7: Construct the plots with descending average annual number of cases by type of event   
