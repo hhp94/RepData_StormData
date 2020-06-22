@@ -39,7 +39,7 @@ Loaded packages:
 5. "gridExtra"
 
 # Synopsis:    
-The "Storm" dataset gathers natural events data from 1950 to 2011. We used the storm data set to answer two questions: which natural event has the highest impact on 1) public health, and 2) the economy. The main variables that we are working with from this data set are "evtype" or "event types", "bgn_date" or "begin date", "fatalities," "injuries", "PROPDMG" or "properties damage" and "CROPDMG" or "crop damage. From our analysis, in terms of public health, __"Tornado"__ has the highest impact both in terms of average annual cases of injuries and fatalities, In terms of economic damages, __"Flood"__ has the highest economic cost at 4.079 billion dollars annual on average. __[Figure 1](#anchor_1)__, and __[Figure 2](#anchor_1)__ shows the results of our analysis. 
+The "Storm" dataset gathers natural events data from 1950 to 2011. We used the storm data set to answer two questions: which natural event has the highest impact on 1) public health, and 2) the economy. The main variables that we are working with from this data set are "evtype" or "event types", "bgn_date" or "begin date", "fatalities," "injuries", "PROPDMG" or "properties damage" and "CROPDMG" or "crop damage. From our analysis, in terms of public health, __"Tornado"__ has the highest impact both in terms of average annual cases of injuries (1474 cases) and fatalities (91.31 cases), In terms of economic damages, __"Flood"__ has the highest economic cost at 4.079 billion dollars annual on average. __[Figure 1](#anchor_1)__, and __[Figure 2](#anchor_1)__ show the results of our analysis. 
 
 # Sourcing the data:  
      
@@ -62,7 +62,7 @@ data<-fread(file = "./storm.csv.bz2") %>%                       #Read using frea
 
 The clean_names function did the following:  
 1. Removed the special characters at the end of the "STATE" variable  
-2. Lower cases for all variables
+2. Lower cases for all variables   
 3. Make variable names unique, by adding "[a number]" at the end. For example, we have "state" and "state_2" variables corresponding to the state numbers and two-character abbreviations of that state
 
 # Methods:  
@@ -379,28 +379,28 @@ With the mean_tot_econ data frame, we can plot the top 10 annual costs by events
 ```{r, fig.align='center', fig.width=9, fig.height=8}
 
 plot_fat<-ggplot(head(mean_tot_fat, n = 10), aes(x = reorder(evtype, -total), y = total, label = round(total, digits = 2)))+
-        labs(title = "Top 10 Highest Average Annual Fatalities by Event Types", x = "Event Type", y = "Mean Annual Total (Cases/Year)") +
+        labs(title = "Figure 1a:Top 10 Highest Average Annual Fatalities by Event Types", x = "Event Type", y = "Mean Annual Total (Cases/Year)") +
         geom_label(fill = "white", size = 4)
 
 plot_inj<-ggplot(head(mean_tot_inj, n = 10), aes(x = reorder(evtype, -total), y = total, label = round(total, digits = 2))) +
-        labs(title = "Figure 1: Top 10 Highest Average Annual Injuries by Event Types", x = "Event Type", y = "Mean Annual Total (Cases/Year)") +
+        labs(title = "Figure 1b: Top 10 Highest Average Annual Injuries by Event Types", x = "Event Type", y = "Mean Annual Total (Cases/Year)") +
         geom_label(fill = "white", size = 4)
 
 grid.arrange(plot_fat,plot_inj, nrow = 2)
 ```  
   
-From the Figure, we can say that "Tornado" has the most devastating impact to public health based on both the average annual fatalities and injuries.    
+From Figure 1, we can say that "Tornado" has the most devastating impact to public health based on both the average annual fatalities and injuries.    
   
 ## Economic Damage{#anchor_2}   
 
 ```{r, fig.align='center', fig.width=7, fig.height=5}
 plot_econ<-ggplot(head(mean_tot_econ, n = 10), aes(x = reorder(evtype, -avg), y = avg, label = round(avg, digits = 2))) +
-        labs(title = "Top 10 Highest Average Annual Economic Cost by Event Types", x = "Event Type", y = "Mean Annual Total Cost (Million Dollars/Year)") +
+        labs(title = "Figure 2: Top 10 Highest Average Annual Economic Cost by Event Types", x = "Event Type", y = "Mean Annual Total Cost (Million Dollars/Year)") +
         geom_label(fill = "white", size = 4)
 plot_econ
 ```  
   
-From the Figure, we can say that "Flooding" has the most economic impact annually.   
+From Figure 2, we can say that "Flooding" has the most economic impact annually.   
   
 ## Write to Files:  
 ```{r}
